@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Inherit quotation report (from module sale) -->
+    <template id="Safar_report_purchaseorder" inherit_id="purchase.report_purchaseorder_document">
+
+        <!-- on ajoute juste le n° de la commande ...-->
+        <xpath expr="//t[1]/t[1]/div[1]/h2[1]" position="before">
+            <h2><span t-field="o.name"/></h2>
+        </xpath>
+        <!-- ...et on supprime le texte situé devant le n° de la commande sur les 4 lignes d'origines-->
+        <xpath expr="//t[1]/t[1]/div[1]/h2[2]" position="replace"/>
+        <xpath expr="//t[1]/t[1]/div[1]/h2[2]" position="replace"/>
+        <xpath expr="//t[1]/t[1]/div[1]/h2[2]" position="replace"/>
+        <xpath expr="//t[1]/t[1]/div[1]/h2[2]" position="replace"/>
+
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th name="th_cd_article"><strong>Article</strong></th>
+        </xpath>
+        <xpath expr="//td[@id='product']" position="before">
+            <td id="cd_article">
+                <span t-field="line.product_id.default_code"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>
